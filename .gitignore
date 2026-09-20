@@ -1,0 +1,15 @@
+# Dependencies
+node_modules
+dist
+out-tsc
+.angular
+
+# Local env / IDE / logs
+.env
+*.local
+.idea
+.vscode
+.DS_Store
+*.log
+ng-serve.log
+ng-serve.err.log
