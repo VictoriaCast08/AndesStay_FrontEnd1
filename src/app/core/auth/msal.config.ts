@@ -25,7 +25,7 @@ export const msalConfig: Configuration = {
     authority: `https://login.microsoftonline.com/${environment.azure.tenantId}`,
     redirectUri: environment.azure.redirectUri,
     postLogoutRedirectUri: environment.azure.postLogoutRedirectUri,
-    navigateToLoginRequestUrl: true,
+    navigateToLoginRequestUrl: false,
   },
   cache: {
     cacheLocation: 'localStorage',
@@ -55,7 +55,8 @@ export function msalGuardConfigFactory(): MsalGuardConfiguration {
   return {
     interactionType: InteractionType.Redirect,
     authRequest: {
-      scopes: apiConfig.scopes,
+      // Usamos scopes estándar de OIDC para hacer el login básico sin bloquear con el scope de API
+      scopes: ['openid', 'profile', 'email'],
     },
     loginFailedRoute: '/login',
   };
@@ -71,12 +72,11 @@ export function msalInterceptorConfigFactory(): MsalInterceptorConfiguration {
   }
   const map = new Map<string, Array<string>>();
   const base = apiConfig.baseUrl.replace(/\/$/, '');
+
+  // El Interceptor adjuntará el Token cuando se hagan peticiones al BFF
   map.set(base, apiConfig.scopes);
-  map.set(`${base}/api`, apiConfig.scopes);
-  map.set(`${base}/api/`, apiConfig.scopes);
-  // Cubre /api/bff/**
-  map.set(`${base}/api/bff`, apiConfig.scopes);
-  map.set(`${base}/api/bff/`, apiConfig.scopes);
+  map.set(`${base}/*`, apiConfig.scopes);
+
   return {
     interactionType: InteractionType.Redirect,
     protectedResourceMap: map,

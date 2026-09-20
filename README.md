@@ -2,8 +2,8 @@
 
 Frontend **Angular + MSAL** del caso semestral **AndesStay** (EP1 DSY1107).
 
-Repositorio: https://github.com/DsDekoV02/AndesStay_FrontEnd  
-Backend (BFF + microservicios): https://github.com/DsDekoV02/AndesStay_BackEnd
+Repositorio: https://github.com/VictoriaCast08/AndesStay_FrontEnd1
+Backend (BFF + microservicios): https://github.com/VictoriaCast08/AndesStay_BackEnd1
 
 ## Cumplimiento EP1 (rubro MSAL 60%)
 
@@ -62,9 +62,3 @@ Usuario → MSAL Entra ID → access_token (audience api://<API>)
 | `/reports` | Admin |
 | `/audit` | Admin, Auditor |
 
-## Entrega AVA
-
-Pegar este enlace (y el del backend) en AVA + correo del docente:
-
-1. https://github.com/DsDekoV02/AndesStay_FrontEnd
-2. https://github.com/DsDekoV02/AndesStay_BackEnd

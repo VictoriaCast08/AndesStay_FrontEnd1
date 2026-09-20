@@ -9,17 +9,14 @@ export const environment = {
   /** false = login real Microsoft Entra ID (entrega). true = demo visual sin Entra. */
   demo: false,
   azure: {
-    clientId: '<spa-client-id>',
-    tenantId: '<tenant-id>',
-    redirectUri: 'http://localhost:4200',
-    postLogoutRedirectUri: 'http://localhost:4200',
-  },
-  api: {
-    /** BFF AndesStay (API Gateway o localhost en desarrollo) */
-    baseUrl: 'http://localhost:8080',
-    /** Application ID URI de AndesStay-API en Entra */
-    clientId: '<api-client-id>',
-    /** Scope expuesto en Expose an API */
-    scopeName: 'access_as_user',
+      clientId: '6a84e40b-9b22-40e4-b05a-16b64df43827',
+      tenantId: '35442bb9-6147-4555-8ac7-7aea33ca4c73',
+      redirectUri: 'http://localhost:4200',
+      postLogoutRedirectUri: 'http://localhost:4200',
+    },
+    api: {
+      baseUrl: 'http://localhost:8080',
+      clientId: '6a84e40b-9b22-40e4-b05a-16b64df43827',
+      scopeName: 'access_as_user',
   },
 };
