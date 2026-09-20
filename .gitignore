@@ -5,7 +5,6 @@ out-tsc
 .angular
 
 # Local env / IDE / logs
-.env
 *.local
 .idea
 .vscode
