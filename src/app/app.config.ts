@@ -18,6 +18,20 @@ import {
 } from './core/auth/msal.config';
 import { routes } from './app.routes';
 
+// Parche de seguridad para asegurar compatibilidad con crypto en entornos HTTP por IP pública
+if (typeof window !== 'undefined' && (!window.crypto || !(window.crypto as any).getRandomValues)) {
+  Object.defineProperty(window, 'crypto', {
+    value: {
+      getRandomValues: (buffer: Uint8Array) => {
+        for (let i = 0; i < buffer.length; i++) {
+          buffer[i] = Math.floor(Math.random() * 256);
+        }
+        return buffer;
+      }
+    }
+  });
+}
+
 // Inicializa MSAL y procesa la redirección de Microsoft antes de cargar la app
 export function MSALInitializeFactory(msalInstance: IPublicClientApplication): () => Promise<void> {
   return async () => {
