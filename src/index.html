@@ -1,13 +1,27 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <title>AndesStay · Consola operativa</title>
-    <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  </head>
-  <body>
-    <app-root></app-root>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <title>AndesStay · Consola operativa</title>
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Polyfill de seguridad para crypto en HTTP por IP -->
+  <script>
+    if (typeof window !== 'undefined' && (!window.crypto || !window.crypto.getRandomValues)) {
+      window.crypto = {
+        getRandomValues: function(buffer) {
+          for (let i = 0; i < buffer.length; i++) {
+            buffer[i] = Math.floor(Math.random() * 256);
+          }
+          return buffer;
+        }
+      };
+    }
+  </script>
+</head>
+<body>
+<app-root></app-root>
+</body>
 </html>
