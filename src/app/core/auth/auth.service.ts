@@ -95,7 +95,7 @@ export class AuthService {
       return;
     }
     await this.msal.instance.logoutRedirect({
-      postLogoutRedirectUri: '/',
+      postLogoutRedirectUri: environment.postLogoutRedirectUri,
     });
   }
 

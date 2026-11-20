@@ -15,7 +15,7 @@ import { AuthService } from '../../core/auth/auth.service';
     <div class="panel">
       <div class="panel-head">
         <div>
-          <h2>/api/bff/report/kpis</h2>
+          <h2>/api/report/kpis</h2>
           <p class="muted" style="margin:0">Solo rol Admin</p>
         </div>
         <button type="button" class="btn-primary" (click)="load()" [disabled]="loading">

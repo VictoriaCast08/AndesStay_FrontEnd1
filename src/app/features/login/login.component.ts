@@ -51,8 +51,8 @@ import { environment } from '../../../environments/environment';
 })
 export class LoginComponent {
   error: string | null = null;
-  tenant = environment.azure.tenantId;
-  spaClient = environment.azure.clientId;
+  tenant = environment.azureTenantId;
+  spaClient = environment.azureClientId;
   scope = apiConfig.scopes[0];
   baseUrl = apiConfig.baseUrl;
 

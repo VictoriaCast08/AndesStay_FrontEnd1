@@ -21,7 +21,7 @@ import { AuthService } from '../../core/auth/auth.service';
       <div class="panel-head">
         <div>
           <h2>Listado</h2>
-          <p class="muted" style="margin:0">Mock del BFF · /api/bff/reservations</p>
+          <p class="muted" style="margin:0">BFF · /api/reservations</p>
         </div>
         <button type="button" class="btn-primary" (click)="load()" [disabled]="loading">
           {{ loading ? 'Cargando…' : 'Recargar' }}

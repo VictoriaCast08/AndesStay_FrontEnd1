@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
-const base = environment.api.baseUrl.replace(/\/$/, '');
+const base = environment.apiBaseUrl.replace(/\/$/, '');
 
 export interface BffMe {
   user: string;
@@ -46,18 +46,21 @@ export class BffApiService {
   }
 
   reservations(): Observable<ReservationRow[]> {
-    return this.http.get<ReservationRow[]>(`${base}/api/bff/reservations`);
+    return this.http.get<ReservationRow[]>(`${base}/api/reservations`);
   }
 
   catalog(): Observable<UnitRow[]> {
-    return this.http.get<UnitRow[]>(`${base}/api/bff/catalog/units`);
+    return this.http.get<UnitRow[]>(`${base}/api/catalog/units`);
   }
 
   audit(): Observable<Array<Record<string, unknown>>> {
-    return this.http.get<Array<Record<string, unknown>>>(`${base}/api/bff/audit/timeline`);
+    return this.http.get<Array<Record<string, unknown>>>(`${base}/api/audit/timeline`);
   }
 
   reportKpis(): Observable<Record<string, unknown>> {
-    return this.http.get<Record<string, unknown>>(`${base}/api/bff/report/kpis`);
+    return this.http.get<Record<string, unknown>>(`${base}/api/report/kpis`);
   }
 }
+
+
+

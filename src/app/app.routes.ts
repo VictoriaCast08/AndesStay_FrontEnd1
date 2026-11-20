@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/auth/auth.guard';
+import { MsalGuard } from '@azure/msal-angular';
 import { roleGuard } from './core/auth/role.guard';
 import { LoginComponent } from './features/login/login.component';
 import { ShellComponent } from './layout/shell.component';
@@ -17,36 +17,36 @@ export const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
-    canActivate: [authGuard],
+    canActivate: [MsalGuard],
     children: [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        canActivate: [roleGuard],
+        canActivate: [MsalGuard, roleGuard],
         data: { roles: ['Admin', 'Operador', 'Cliente', 'Auditor'] },
       },
       {
         path: 'reservations',
         component: ReservationsComponent,
-        canActivate: [roleGuard],
+        canActivate: [MsalGuard, roleGuard],
         data: { roles: ['Admin', 'Operador', 'Cliente'] },
       },
       {
         path: 'catalog',
         component: CatalogComponent,
-        canActivate: [roleGuard],
+        canActivate: [MsalGuard, roleGuard],
         data: { roles: ['Admin', 'Operador'] },
       },
       {
         path: 'reports',
         component: ReportsComponent,
-        canActivate: [roleGuard],
+        canActivate: [MsalGuard, roleGuard],
         data: { roles: ['Admin'] },
       },
       {
         path: 'audit',
         component: AuditComponent,
-        canActivate: [roleGuard],
+        canActivate: [MsalGuard, roleGuard],
         data: { roles: ['Admin', 'Auditor'] },
       },
     ],

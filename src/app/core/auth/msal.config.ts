@@ -13,18 +13,20 @@ import {
 import { environment } from '../../../environments/environment';
 
 export const apiConfig = {
-  baseUrl: environment.api.baseUrl,
-  clientId: environment.api.clientId,
-  /** Scope completo que el SPA solicita para el BFF AndesStay */
-  scopes: [`api://${environment.api.clientId}/${environment.api.scopeName}`],
+  baseUrl: environment.apiBaseUrl,
+  clientId: environment.apiClientId,
+  /** Scope completo que el SPA solicita para el BFF AndesStay (audiencia del JWT) */
+  scopes: [`api://${environment.apiClientId}/${environment.apiScope}`],
 };
 
 export const msalConfig: Configuration = {
   auth: {
-    clientId: environment.azure.clientId,
-    authority: `https://login.microsoftonline.com/${environment.azure.tenantId}`,
-    redirectUri: environment.azure.redirectUri,
-    postLogoutRedirectUri: environment.azure.postLogoutRedirectUri,
+    clientId: environment.azureClientId,
+    // 'common' permite login multitenant (cualquier tenant de Entra ID), alineado
+    // con NimbusJwtDecoder del BFF.
+    authority: `https://login.microsoftonline.com/${environment.azureTenantId}`,
+    redirectUri: environment.redirectUri,
+    postLogoutRedirectUri: environment.postLogoutRedirectUri,
     navigateToLoginRequestUrl: false,
   },
   cache: {
