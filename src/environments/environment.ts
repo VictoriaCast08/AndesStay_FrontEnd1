@@ -7,7 +7,7 @@ export const environment = {
   demo: false,
 
   // BFF / AWS API Gateway — todo el tráfico de API pasa por aquí
-  apiBaseUrl: 'https://c09kr0kozf.execute-api.us-east-1.amazonaws.com/api',
+  apiBaseUrl: 'https://pwwdpbx3n8.execute-api.us-east-1.amazonaws.com/api',
 
   // Microsoft Entra ID (App Registration de tipo Single-page application)
   azureClientId: '5bf59bf1-a4c7-4169-975d-8976a17e9b60', // Application (client) ID de la app SPA
