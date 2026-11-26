@@ -4,12 +4,6 @@ dist/
 out-tsc/
 .angular/
 
-# Environment files (nunca subir credenciales ni URLs quemadas)
-.env
-.env.local
-.env.*.local
-!.env.example
-
 # IDE / OS / logs
 *.local
 .idea/
