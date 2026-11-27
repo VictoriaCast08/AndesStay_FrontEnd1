@@ -193,7 +193,11 @@ export class DashboardComponent {
 
   private fmtStay(row: unknown): string {
     const r = row as Record<string, unknown>;
-    const parts = [r['id'], r['unidad'], r['huesped'], r['estado']].filter(Boolean);
+    const code = r['code'] ?? r['id'];
+    const unit = r['unidad'] ?? r['unitName'] ?? (r['unitId'] ? `Unidad #${r['unitId']}` : null);
+    const guest = r['guestName'] ?? r['huesped'];
+    const status = r['status'] ?? r['estado'];
+    const parts = [code, unit, guest, status].filter(Boolean);
     return parts.join(' · ');
   }
 }

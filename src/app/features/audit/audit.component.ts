@@ -40,17 +40,19 @@ import { AuthService } from '../../core/auth/auth.service';
                 <th>Reserva</th>
                 <th>Tipo</th>
                 <th>Actor</th>
+                <th>Origen</th>
                 <th>Timestamp</th>
               </tr>
             </thead>
             <tbody>
-              @for (ev of events; track ev['eventId']) {
+              @for (ev of events; track ev['eventId'] || ev['event_id'] || $index) {
                 <tr>
-                  <td class="mono">{{ ev['eventId'] }}</td>
-                  <td class="mono">{{ ev['reserva'] }}</td>
-                  <td>{{ ev['tipo'] }}</td>
+                  <td class="mono">{{ ev['eventId'] || ev['event_id'] || ev['id'] }}</td>
+                  <td class="mono">{{ ev['reservationCode'] || ev['reservation_code'] || ev['reserva'] }}</td>
+                  <td>{{ ev['eventType'] || ev['event_type'] || ev['tipo'] }}</td>
                   <td>{{ ev['actor'] }}</td>
-                  <td class="mono">{{ ev['ts'] }}</td>
+                  <td>{{ ev['origin'] || 'SPA' }}</td>
+                  <td class="mono">{{ ev['occurredAt'] || ev['occurred_at'] || ev['ts'] }}</td>
                 </tr>
               }
             </tbody>

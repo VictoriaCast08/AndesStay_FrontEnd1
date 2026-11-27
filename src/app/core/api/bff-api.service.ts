@@ -13,20 +13,31 @@ export interface BffMe {
 }
 
 export interface ReservationRow {
-  id: string;
-  unidad: string;
-  huesped: string;
-  estado: string;
-  desde: string;
-  hasta: string;
+  id: number | string;
+  code?: string;
+  unitId?: number;
+  guestName?: string;
+  status?: string;
+  stayFrom?: string;
+  stayTo?: string;
+  unidad?: string;
+  huesped?: string;
+  estado?: string;
+  desde?: string;
+  hasta?: string;
 }
 
 export interface UnitRow {
-  id: string;
-  nombre: string;
-  tipo: string;
-  tarifa: number;
-  disponible: boolean;
+  id: number | string;
+  code?: string;
+  name?: string;
+  type?: string;
+  rate?: number;
+  available?: boolean;
+  nombre?: string;
+  tipo?: string;
+  tarifa?: number;
+  disponible?: boolean;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -49,8 +60,24 @@ export class BffApiService {
     return this.http.get<ReservationRow[]>(`${base}/api/reservations`);
   }
 
+  createReservation(payload: Record<string, unknown>): Observable<ReservationRow> {
+    return this.http.post<ReservationRow>(`${base}/api/reservations`, payload);
+  }
+
+  updateReservationStatus(id: number | string, status: string): Observable<ReservationRow> {
+    return this.http.put<ReservationRow>(`${base}/api/reservations/${id}/status`, { status });
+  }
+
   catalog(): Observable<UnitRow[]> {
     return this.http.get<UnitRow[]>(`${base}/api/catalog/units`);
+  }
+
+  createUnit(payload: Record<string, unknown>): Observable<UnitRow> {
+    return this.http.post<UnitRow>(`${base}/api/catalog/units`, payload);
+  }
+
+  updateUnit(id: number | string, payload: Record<string, unknown>): Observable<UnitRow> {
+    return this.http.put<UnitRow>(`${base}/api/catalog/units/${id}`, payload);
   }
 
   audit(): Observable<Array<Record<string, unknown>>> {
@@ -61,6 +88,3 @@ export class BffApiService {
     return this.http.get<Record<string, unknown>>(`${base}/api/report/kpis`);
   }
 }
-
-
-
